@@ -31,11 +31,83 @@
 	}
 </script>
 
-<h1>Svelte App (App2)</h1>
+<svelte:head>
+	<title>Svelte App (App2)</title>
+</svelte:head>
 
-{#if loggedIn}
-	<p>Logged in as: {username}</p>
-	<button onclick={logout}>Logout</button>
-{:else}
-	<button onclick={login}>Login</button>
-{/if}
+<div
+	style="
+		min-height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: #f4f6f8;
+		font-family: Arial, sans-serif;
+	"
+>
+	<div
+		style="
+			width: 420px;
+			padding: 32px;
+			border-radius: 16px;
+			background: white;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+			text-align: center;
+		"
+	>
+		<h1 style="margin-bottom: 50px; color: #1f2937;">
+			Svelte App
+		</h1>
+
+		{#if loggedIn}
+			<div
+				style="
+					padding: 16px;
+					border-radius: 12px;
+					background: #ecfdf5;
+					color: #065f46;
+					margin-bottom: 20px;
+				"
+			>
+				<strong>Authenticated</strong>
+
+				<p style="margin: 8px 0 0;">
+					Logged in as:
+					<strong>{username}</strong>
+				</p>
+			</div>
+
+			<button
+				onclick={logout}
+				style="
+					width: 100%;
+					padding: 12px;
+					border: none;
+					border-radius: 10px;
+					background: #dc2626;
+					color: white;
+					font-size: 16px;
+					cursor: pointer;
+				"
+			>
+				Logout
+			</button>
+		{:else}
+			<button
+				onclick={login}
+				style="
+					width: 100%;
+					padding: 12px;
+					border: none;
+					border-radius: 10px;
+					background: #2563eb;
+					color: white;
+					font-size: 16px;
+					cursor: pointer;
+				"
+			>
+				Login with Keycloak
+			</button>
+		{/if}
+	</div>
+</div>
