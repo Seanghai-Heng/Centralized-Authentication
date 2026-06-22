@@ -39,6 +39,29 @@ Once a user logs in through one application, they can access other applications 
 
 ---
 
+# Why Keycloak Instead of Building a Custom User Management Application?
+
+This project uses Keycloak as the centralized Identity Provider (IdP) instead of developing a custom authentication and user management application.
+
+While it is technically possible to build a custom authentication system, doing so would require implementing and maintaining many security-critical features such as password management, session handling, authorization, Single Sign-On (SSO), and security monitoring.
+
+Keycloak provides these capabilities out of the box and follows industry-standard authentication protocols including OAuth2 and OpenID Connect (OIDC).
+
+# Comparison
+
+| Criteria | Keycloak | Custom User Management Application |
+|----------|-----------|-----------------------------------|
+| Initial Development Time | Low | High |
+| Security Features | Extensive built-in security controls | Must be developed and tested |
+| SSO Support | Native support | Complex custom implementation |
+| User Management | Built-in admin console | Requires custom admin portal |
+| Standards Compliance | OAuth2, OpenID Connect, SAML | Must be implemented manually |
+| Future Application Integration | Easy | Additional development required |
+| Maintenance Overhead | Low | High |
+| Cost Effectiveness | High | Lower due to ongoing development effort |
+
+---
+
 # Prerequisites
 
 Install the following software:
@@ -70,6 +93,7 @@ Open Terminal and run:
 ```bash
 docker --version
 docker compose version
+```
 
 # Starting Keycloak
 
@@ -114,6 +138,7 @@ admin123
 # Keycloak Initial Configuration
 
 ## Create Realm
+In navigation, Go to Manage Realms
 
 Create a realm named:
 
@@ -124,6 +149,7 @@ company-realm
 ---
 
 ## Create User
+In navigation, Go to Users
 
 Create a test user:
 
@@ -132,6 +158,26 @@ Username:
 ```text
 user1
 ```
+
+Email:
+
+```text
+user1@gmail.com
+```
+
+First name:
+
+```text
+Seanghai
+```
+
+Last name:
+
+```text
+Heng
+```
+
+=> click Create, then go to Credentials tab, click Set Password
 
 Password:
 
@@ -148,6 +194,8 @@ Temporary Password
 ---
 
 ## Create React Client
+In navigation, Go to Clients
+Create a client:
 
 Client ID:
 
@@ -298,21 +346,3 @@ Logging out from either application will:
 * Require login again in all connected applications
 
 ---
-
-# Security Design
-
-This solution uses:
-
-* OAuth2 Authorization Code Flow
-* PKCE (Proof Key for Code Exchange)
-* OpenID Connect (OIDC)
-
-Authentication is handled by Keycloak instead of a custom-built authentication system.
-
-Benefits include:
-
-* Centralized user management
-* Reduced security risk
-* Built-in SSO support
-* Industry-standard authentication protocols
-* Easier maintenance and scalability
